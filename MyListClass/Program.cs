@@ -10,6 +10,7 @@ namespace MyListClass
     {
         static void Main(string[] args)
         {
+            //CustomList<T> test = new CustomList<T>();
         }
     }
 }
