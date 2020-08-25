@@ -78,7 +78,7 @@ namespace MyMethodTest
         }
         //Remove Test
         [TestMethod]
-        public void Remove_ItemAtIndex()
+        public void Remove_ItemAtFirstIndex()
         {
             CustomList<int> customList = new CustomList<int>();
             customList.Add(5);
@@ -92,6 +92,107 @@ namespace MyMethodTest
 
             Assert.AreEqual(expected, actual);
         }
-        
+        [TestMethod]
+        public void Remove_ItemAtLastIndex()
+        {
+            CustomList<int> customList = new CustomList<int>();
+            customList.Add(2);
+            customList.Add(3);
+            customList.Add(4);
+
+            customList.Remove(customList[2]);
+            int actual = customList[1];
+
+            int expected = 3;
+
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void Remove_CountOf3()
+        {
+            CustomList<int> customList = new CustomList<int>();
+            customList.Add(2);
+            customList.Add(3);
+            customList.Add(4);
+            customList.Add(6);
+
+            customList.Remove(customList[2]);
+            int actual = customList.Count;
+
+            int expected = 3;
+
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void Remove_ConfirmCountOf6()
+        {
+            CustomList<int> customList = new CustomList<int>();
+            customList.Add(5);
+            customList.Add(5);
+            customList.Add(5);
+            customList.Add(5);
+            customList.Add(5);
+            customList.Add(5);
+            customList.Add(5);
+
+            customList.Remove(customList[3]);
+            int actual = customList.Count;
+
+            int expected = 6;
+
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void Remove_SlidesIntoNextIndex()
+        {
+            CustomList<int> customList = new CustomList<int>();
+            customList.Add(5);
+            customList.Add(2);
+            customList.Add(4);
+            customList.Add(5);
+            customList.Add(6);
+            customList.Add(5);
+
+            customList.Remove(customList[3]);
+            int actual = customList[3];
+
+            int expected = 6;
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void Remove_AllIndexSlideIntoNext()
+        {
+            CustomList<int> customList = new CustomList<int>();
+            customList.Add(5);
+            customList.Add(2);
+            customList.Add(4);
+            customList.Add(8);
+            customList.Add(6);
+            customList.Add(5);
+
+            customList.Remove(customList[3]);
+            int actual = customList[4];
+
+            int expected = 5;
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void Remove_IfNotFound()
+        {
+            CustomList<int> customList = new CustomList<int>();
+            customList.Add(5);
+            customList.Add(2);
+            customList.Add(4);
+            customList.Add(8);
+            customList.Add(6);
+            customList.Add(5);
+
+            customList.Remove(100);
+            //suppost to do nothing
+            int actual = customList.Count;
+
+            int expected = 6;
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
