@@ -76,5 +76,22 @@ namespace MyMethodTest
 
             Assert.AreEqual(expected, actual);
         }
+        //Remove Test
+        [TestMethod]
+        public void Remove_ItemAtIndex()
+        {
+            CustomList<int> customList = new CustomList<int>();
+            customList.Add(5);
+            customList.Add(10);
+            customList.Add(2);
+
+            customList.Remove(customList[0]);
+            int actual = customList[0];
+
+            int expected = 10;
+
+            Assert.AreEqual(expected, actual);
+        }
+        
     }
 }
