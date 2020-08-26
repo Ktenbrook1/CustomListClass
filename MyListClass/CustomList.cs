@@ -35,17 +35,12 @@ namespace MyListClass
                 _capacity = value;
             }
         }
-        //original constructor was put here
 
-
-        // check to see if 'i' is "valid"
-        // if not, throw an exception
-        // throw new ArgumentOutOfRangeException();
         public T this[int i]
         {
             get
             {
-                if (i <= _capacity) // switch to count, also, make sure cannot access negative
+                if (i <= _count && i >= 0) 
                 {
                     return _items[i];
                 }
@@ -54,9 +49,17 @@ namespace MyListClass
                     throw new ArgumentOutOfRangeException();
                 }
             }
-            set // don't forget about me!
+            set 
             {
-                _items[i] = value;
+                if(i <= _count && i >= 0)
+                {
+                    _items[i] = value;
+                }
+                else
+                {
+                    throw new ArgumentOutOfRangeException();
+                }
+
             }
         }
 
@@ -88,27 +91,26 @@ namespace MyListClass
         public void Remove(T item)
         {
             bool haveValue = false;
-            int notOutOfBounds = 0;
+            int index = 0;
             T[] temporary = _items;
-            //do
-            //{
-                for (int i = 0; i < _items.Length; i++)
+     
+            for (int i = 0; i < _items.Length; i++)
+            {
+                if (item.Equals(_items[i]))
                 {
-                    if (item.Equals(_items[i]))
-                    {
-                        haveValue = true;
-                        break;
-                    }
-                    else
-                    {
-                        _items[i] = temporary[i];
-                    }
-                    notOutOfBounds++;
+                    haveValue = true;
+                    break;
                 }
-            // } while (haveValue == false && notOutOfBounds <= _count);
+                else
+                {
+                    _items[i] = temporary[i];
+                }
+                index++;
+            }
+           
             if (haveValue)
             {
-                for (int i = notOutOfBounds; notOutOfBounds < _capacity - 1; i++)
+                for (int i = index; index < _capacity - 1; i++)
                 {
                     if (i == _capacity - 1)
                     {

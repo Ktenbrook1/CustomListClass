@@ -18,7 +18,11 @@ namespace MyListClass
             customList.Add(6);
             customList.Add(5);
 
-            string test =  customList.ToString();
+            string test =  customList.ToString(); // "524865
+
+            CustomList<int> testList = new CustomList<int>();
+
+            string test2 = testList.ToString(); // null
         }
     }
 }
