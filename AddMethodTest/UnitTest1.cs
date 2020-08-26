@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MyListClass;
 namespace MyMethodTest
@@ -220,6 +221,57 @@ namespace MyMethodTest
 
             Assert.AreEqual(expected, actual);
         }
+        [TestMethod]
+        public void Plus_AddTwoList()
+        {
+            CustomList<int> customList = new CustomList<int>();
+            customList.Add(5);
+            customList.Add(2);
+            customList.Add(4);
 
+            CustomList<int> customList2 = new CustomList<int>();
+            customList.Add(8);
+            customList.Add(6);
+            customList.Add(5);
+
+            List<int> actual = customList + customList2;
+            List<int> expected = new List<int>() { 5, 2, 4, 8, 6, 5 };
+
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void Plus_IfListEmpty()
+        {
+            CustomList<int> customList = new CustomList<int>();
+            customList.Add(5);
+            customList.Add(2);
+            customList.Add(4);
+
+            CustomList<int> customList2 = new CustomList<int>();
+
+            List<int> actual = customList + customList2;
+            List<int> expected = new List<int>() { 5, 2, 4 };
+
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void Plus_IfSecondListIsLarger()
+        {
+            CustomList<int> customList = new CustomList<int>();
+            customList.Add(5);
+            customList.Add(2);
+
+            CustomList<int> customList2 = new CustomList<int>();
+            customList2.Add(9);
+            customList2.Add(4);
+            customList2.Add(7);
+            customList2.Add(1);
+
+            List<int> actual = customList + customList2;
+            List<int> expected = new List<int>() { 5, 2, 9, 4, 7, 1 };
+
+            Assert.AreEqual(expected, actual);
+        }
+        
     }
 }

@@ -3,12 +3,13 @@ using System.CodeDom;
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace MyListClass
 {
-    public class CustomList<T>
+    public class CustomList<T> 
     {
 
         T[] _items;
@@ -133,6 +134,21 @@ namespace MyListClass
                 concat += _items[i].ToString();
             }
             return concat;
+        }
+        public static CustomList<T> operator +(CustomList<T> customList, CustomList<T> customList1)
+        {
+            CustomList<T> customListConcat = new CustomList<T>();
+
+            for(int i = 0; i < customList.Count; i++)
+            {
+                customListConcat.Add(customList[i]);
+            }
+            for (int i = 0; i < customList1.Count; i++)
+            {
+                customListConcat.Add(customList[i]);
+            }
+
+            return customListConcat;
         }
     }
 }
