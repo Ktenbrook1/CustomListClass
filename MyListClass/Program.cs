@@ -10,7 +10,15 @@ namespace MyListClass
     {
         static void Main(string[] args)
         {
-            //CustomList<T> test = new CustomList<T>();
+            CustomList<int> customList = new CustomList<int>();
+            customList.Add(5);
+            customList.Add(2);
+            customList.Add(4);
+            customList.Add(8);
+            customList.Add(6);
+            customList.Add(5);
+
+            string test =  customList.ToString();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom;
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,13 +15,6 @@ namespace MyListClass
 
         int _capacity;
         int _count;
-
-        public CustomList()
-        {
-            _count = 0;
-            _capacity = 4;
-            _items = new T[_capacity];
-        }
 
         public int Count
         {
@@ -43,6 +37,36 @@ namespace MyListClass
         }
         //original constructor was put here
 
+
+        // check to see if 'i' is "valid"
+        // if not, throw an exception
+        // throw new ArgumentOutOfRangeException();
+        public T this[int i]
+        {
+            get
+            {
+                if (i <= _capacity) // switch to count, also, make sure cannot access negative
+                {
+                    return _items[i];
+                }
+                else
+                {
+                    throw new ArgumentOutOfRangeException();
+                }
+            }
+            set // don't forget about me!
+            {
+                _items[i] = value;
+            }
+        }
+
+        public CustomList()
+        {
+            _count = 0;
+            _capacity = 4;
+            _items = new T[_capacity];
+        }
+
         public void Add(T item)
         {
             if (_count == _capacity)
@@ -50,23 +74,15 @@ namespace MyListClass
                 _capacity = _capacity * 2;
                 T[] temporary = _items;
                 _items = new T[_capacity];
-                for(int i = 0; i < Count; i++)
+                for (int i = 0; i < Count; i++)
                 {
                     _items[i] = temporary[i];
                 }
 
             }
-            
+
             _items[_count] = item;
             _count++;
-        }
-        // check to see if 'i' is "valid"
-        // if not, throw an exception
-        // throw new ArgumentOutOfRangeException();
-        public T this[int i]
-        {
-            get { return _items[i]; }
-            set { _items[i] = value; }
         }
 
         public void Remove(T item)
@@ -74,8 +90,8 @@ namespace MyListClass
             bool haveValue = false;
             int notOutOfBounds = 0;
             T[] temporary = _items;
-            do
-            {
+            //do
+            //{
                 for (int i = 0; i < _items.Length; i++)
                 {
                     if (item.Equals(_items[i]))
@@ -89,16 +105,24 @@ namespace MyListClass
                     }
                     notOutOfBounds++;
                 }
-            } while (haveValue = false && notOutOfBounds <= _count);
+            // } while (haveValue == false && notOutOfBounds <= _count);
             if (haveValue)
             {
-                _count--;
-                for(int i = notOutOfBounds; notOutOfBounds < _items.Length; i++)
+                for (int i = notOutOfBounds; notOutOfBounds < _capacity - 1; i++)
                 {
-                    _items[i] = temporary[i + 1];
+                    if (i == _capacity - 1)
+                    {
+                        _items[i] = default(T);
+                        break;
+                    }
+                    else
+                    {
+                        _items[i] = temporary[i + 1];
+                    }
+                    continue;
                 }
+                _count--;
             }
-           
         }
     }
 }
