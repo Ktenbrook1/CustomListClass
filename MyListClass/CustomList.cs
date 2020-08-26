@@ -121,10 +121,18 @@ namespace MyListClass
                     {
                         _items[i] = temporary[i + 1];
                     }
-                    continue;
                 }
                 _count--;
             }
+        }
+        public override string ToString()
+        {
+            string concat = "";
+            for (int i = 0; i < _count; i++)
+            {
+                concat += _items[i].ToString();
+            }
+            return concat;
         }
     }
 }

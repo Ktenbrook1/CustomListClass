@@ -194,5 +194,32 @@ namespace MyMethodTest
             int expected = 6;
             Assert.AreEqual(expected, actual);
         }
+        [TestMethod]
+        public void ToString_PrintToConsole()
+        {
+            CustomList<int> customList = new CustomList<int>();
+            customList.Add(5);
+            customList.Add(2);
+            customList.Add(4);
+            customList.Add(8);
+            customList.Add(6);
+            customList.Add(5);
+
+            string actual = customList.ToString(); // "524865"
+            string expected = "524865";
+
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void ToString_IfNothing()
+        {
+            CustomList<int> testList = new CustomList<int>();
+
+            string actual = testList.ToString();
+            string expected = "";
+
+            Assert.AreEqual(expected, actual);
+        }
+
     }
 }
