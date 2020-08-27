@@ -145,7 +145,7 @@ namespace MyListClass
             }
             for (int i = 0; i < customList1.Count; i++)
             {
-                customListConcat.Add(customList[i]);
+                customListConcat.Add(customList1[i]);
             }
 
             return customListConcat;

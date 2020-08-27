@@ -230,12 +230,21 @@ namespace MyMethodTest
             customList.Add(4);
 
             CustomList<int> customList2 = new CustomList<int>();
-            customList.Add(8);
-            customList.Add(6);
-            customList.Add(5);
+            customList2.Add(8);
+            customList2.Add(6);
+            customList2.Add(5);
 
-            List<int> actual = customList + customList2;
-            List<int> expected = new List<int>() { 5, 2, 4, 8, 6, 5 };
+            CustomList<int> actualList = customList + customList2;
+            CustomList<int> expectedList = new CustomList<int>();
+            expectedList.Add(5);
+            expectedList.Add(2);
+            expectedList.Add(4);
+            expectedList.Add(8);
+            expectedList.Add(6);
+            expectedList.Add(5);
+
+            string actual = actualList.ToString();
+            string expected = expectedList.ToString();
 
             Assert.AreEqual(expected, actual);
         }
@@ -249,8 +258,14 @@ namespace MyMethodTest
 
             CustomList<int> customList2 = new CustomList<int>();
 
-            List<int> actual = customList + customList2;
-            List<int> expected = new List<int>() { 5, 2, 4 };
+            CustomList<int> actualList = customList + customList2;
+            CustomList<int> expectedList = new CustomList<int>();
+            expectedList.Add(5);
+            expectedList.Add(2);
+            expectedList.Add(4);
+
+            string actual = actualList.ToString();
+            string expected = expectedList.ToString();
 
             Assert.AreEqual(expected, actual);
         }
@@ -267,8 +282,17 @@ namespace MyMethodTest
             customList2.Add(7);
             customList2.Add(1);
 
-            List<int> actual = customList + customList2;
-            List<int> expected = new List<int>() { 5, 2, 9, 4, 7, 1 };
+            CustomList<int> actualList = customList + customList2;
+            CustomList<int> expectedList = new CustomList<int>();
+            expectedList.Add(5);
+            expectedList.Add(2);
+            expectedList.Add(9);
+            expectedList.Add(4);
+            expectedList.Add(7);
+            expectedList.Add(1);
+
+            string actual = actualList.ToString();
+            string expected = expectedList.ToString();
 
             Assert.AreEqual(expected, actual);
         }
