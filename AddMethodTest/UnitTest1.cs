@@ -296,6 +296,113 @@ namespace MyMethodTest
 
             Assert.AreEqual(expected, actual);
         }
-        
+        [TestMethod]
+        public void Subtract_TwoList()
+        {
+            CustomList<int> customList = new CustomList<int>();
+            customList.Add(5);
+            customList.Add(2);
+            customList.Add(4);
+
+            CustomList<int> customList2 = new CustomList<int>();
+            customList2.Add(8);
+            customList2.Add(6);
+            customList2.Add(5);
+
+            CustomList<int> actualList = customList - customList2;
+            CustomList<int> expectedList = new CustomList<int>();
+            expectedList.Add(2);
+            expectedList.Add(4);
+     
+            string actual = actualList.ToString();
+            string expected = expectedList.ToString();
+
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void Subtract_TwoListSecondIsLarger()
+        {
+            CustomList<int> customList = new CustomList<int>();
+            customList.Add(5);
+            customList.Add(2);
+            customList.Add(4);
+
+            CustomList<int> customList2 = new CustomList<int>();
+            customList2.Add(8);
+            customList2.Add(6);
+            customList2.Add(5);
+            customList2.Add(2);
+            customList2.Add(6);
+
+            CustomList<int> actualList = customList - customList2;
+            CustomList<int> expectedList = new CustomList<int>();
+            expectedList.Add(4);
+
+            string actual = actualList.ToString();
+            string expected = expectedList.ToString();
+
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void Subtract_IfSecondListEmpty()
+        {
+            CustomList<int> customList = new CustomList<int>();
+            customList.Add(5);
+            customList.Add(2);
+            customList.Add(4);
+
+            CustomList<int> customList2 = new CustomList<int>();
+
+            CustomList<int> actualList = customList - customList2;
+            CustomList<int> expectedList = new CustomList<int>();
+            expectedList.Add(5);
+            expectedList.Add(2);
+            expectedList.Add(4);
+
+            string actual = actualList.ToString();
+            string expected = expectedList.ToString();
+
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void Subtract_IfFirstListZerosOut()
+        {
+            CustomList<int> customList = new CustomList<int>();
+            customList.Add(5);
+            customList.Add(2);
+
+            CustomList<int> customList2 = new CustomList<int>();
+            customList2.Add(5);
+            customList2.Add(2);
+            customList2.Add(7);
+            customList2.Add(1);
+
+            CustomList<int> actualList = customList - customList2;
+            CustomList<int> expectedList = new CustomList<int>();
+
+            string actual = actualList.ToString();
+            string expected = expectedList.ToString();
+
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void Subtract_IfFirstListIsZeroToStart()
+        {
+            CustomList<int> customList = new CustomList<int>();
+
+            CustomList<int> customList2 = new CustomList<int>();
+            customList2.Add(5);
+            customList2.Add(2);
+            customList2.Add(7);
+            customList2.Add(1);
+
+            CustomList<int> actualList = customList - customList2;
+            CustomList<int> expectedList = new CustomList<int>();
+
+            string actual = actualList.ToString();
+            string expected = expectedList.ToString();
+
+            Assert.AreEqual(expected, actual);
+        }
     }
 }

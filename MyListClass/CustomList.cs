@@ -150,5 +150,22 @@ namespace MyListClass
 
             return customListConcat;
         }
+        public static CustomList<T> operator -(CustomList<T> customList, CustomList<T> customList1)
+        {
+            CustomList<T> customListSubtract = new CustomList<T>();
+
+            for (int i = 0; i < customList.Count; i++)
+            {
+                for (int j = 0; j < customList1.Count; j++)
+                {
+                    if (customList[i].ToString() == customList1[j].ToString())
+                    {
+                        customList.Remove(customList[i]);
+                    }
+                }
+            }
+         
+            return customList;
+        }
     }
 }
