@@ -89,7 +89,7 @@ namespace MyListClass
             _count++;
         }
 
-        public void Remove(T item)
+        public bool Remove(T item)
         {
             bool haveValue = false;
             int index = 0;
@@ -124,7 +124,9 @@ namespace MyListClass
                     }
                 }
                 _count--;
+                return true;
             }
+            return false;
         }
         public override string ToString()
         {
@@ -152,7 +154,6 @@ namespace MyListClass
         }
         public static CustomList<T> operator -(CustomList<T> customList, CustomList<T> customList1)
         {
-            CustomList<T> customListSubtract = new CustomList<T>();
 
             for (int i = 0; i < customList.Count; i++)
             {
