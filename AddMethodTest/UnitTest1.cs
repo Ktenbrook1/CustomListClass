@@ -404,5 +404,136 @@ namespace MyMethodTest
 
             Assert.AreEqual(expected, actual);
         }
+        [TestMethod]
+        public void Zipper_ZippesTwoList()
+        {
+            CustomList<int> customList = new CustomList<int>();
+            customList.Add(1);
+            customList.Add(3);
+            customList.Add(5);
+
+            CustomList<int> customList2 = new CustomList<int>();
+            customList2.Add(2);
+            customList2.Add(4);
+            customList2.Add(6);
+
+            CustomList<int> actual = customList.Zip(customList2);
+            CustomList<int> expected = new CustomList<int>();
+            expected.Add(1);
+            expected.Add(2);
+            expected.Add(3);
+            expected.Add(4);
+            expected.Add(5);
+            expected.Add(6);
+
+            string test = actual.ToString();
+            string expect = expected.ToString();
+
+            Assert.AreEqual(expect, test);
+        }
+        [TestMethod]
+        public void Zipper_ZippesTwoListSecondIsLarger()
+        {
+            CustomList<int> customList = new CustomList<int>();
+            customList.Add(1);
+            customList.Add(3);
+            customList.Add(5);
+
+            CustomList<int> customList2 = new CustomList<int>();
+            customList2.Add(2);
+            customList2.Add(4);
+            customList2.Add(6);
+            customList2.Add(6);
+            customList2.Add(8);
+
+            CustomList<int> actual = customList.Zip(customList2);
+            CustomList<int> expected = new CustomList<int>();
+            expected.Add(1);
+            expected.Add(2);
+            expected.Add(3);
+            expected.Add(4);
+            expected.Add(5);
+            expected.Add(6);
+            expected.Add(6);
+            expected.Add(8);
+            
+            string test = actual.ToString();
+            string expect = expected.ToString();
+
+            Assert.AreEqual(expect, test);
+        }
+        [TestMethod]
+        public void Zipper_ZippesTwoListFirstIsLarger()
+        {
+            CustomList<int> customList = new CustomList<int>();
+            customList.Add(1);
+            customList.Add(3);
+            customList.Add(5);
+            customList.Add(7);
+            customList.Add(9);
+
+            CustomList<int> customList2 = new CustomList<int>();
+            customList2.Add(2);
+            customList2.Add(4);
+            customList2.Add(6);
+
+            CustomList<int> actual = customList.Zip(customList2);
+            CustomList<int> expected = new CustomList<int>();
+            expected.Add(1);
+            expected.Add(2);
+            expected.Add(3);
+            expected.Add(4);
+            expected.Add(5);
+            expected.Add(6);
+            expected.Add(7);
+            expected.Add(9);
+            
+            string test = actual.ToString();
+            string expect = expected.ToString();
+
+            Assert.AreEqual(expect, test);
+        }
+        [TestMethod]
+        public void Zipper_FirstListEmpty()
+        {
+            CustomList<int> customList = new CustomList<int>();
+          
+            CustomList<int> customList2 = new CustomList<int>();
+            customList2.Add(2);
+            customList2.Add(4);
+            customList2.Add(6);
+
+            CustomList<int> actual = customList.Zip(customList2);
+            CustomList<int> expected = new CustomList<int>();
+            expected.Add(2);
+            expected.Add(4);
+            expected.Add(6);
+
+            string test = actual.ToString();
+            string expect = expected.ToString();
+
+            Assert.AreEqual(expect, test);
+        }
+        [TestMethod]
+        public void Zipper_ScondListEmpty()
+        {
+            CustomList<int> customList = new CustomList<int>();
+            customList.Add(1);
+            customList.Add(2);
+            customList.Add(3);
+
+            CustomList<int> customList2 = new CustomList<int>();
+           
+            CustomList<int> actual = customList.Zip(customList2);
+            CustomList<int> expected = new CustomList<int>();
+            expected.Add(1);
+            expected.Add(2);
+            expected.Add(3);
+
+            string test = actual.ToString();
+            string expect = expected.ToString();
+
+            Assert.AreEqual(expect, test);
+        }
     }
 }

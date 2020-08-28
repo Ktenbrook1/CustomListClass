@@ -1,15 +1,16 @@
 ﻿using System;
 using System.CodeDom;
 using System.CodeDom.Compiler;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MyListClass
+namespace MyListClass 
 {
-    public class CustomList<T> 
+    public class CustomList<T> : IEnumerable
     {
 
         T[] _items;
@@ -137,6 +138,12 @@ namespace MyListClass
             }
             return concat;
         }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            throw new NotImplementedException();
+        }
+
         public static CustomList<T> operator +(CustomList<T> customList, CustomList<T> customList1)
         {
             CustomList<T> customListConcat = new CustomList<T>();
@@ -167,6 +174,43 @@ namespace MyListClass
             }
          
             return customList;
+        }
+        public CustomList<T> Zip(CustomList<T> customList)
+        {
+            CustomList<T> combining = new CustomList<T>();
+
+            int counter;
+            if (_count <= customList.Count)
+            {
+                counter = _count;
+            }
+            else
+            {
+                counter = customList.Count;
+            }
+
+            for (int i = 0; i < counter; i++)
+            {
+                combining.Add(_items[i]);
+                combining.Add(customList[i]);
+            }
+            if (_count > counter)
+            {
+                for (int j = counter; j < _count; j++)
+                {
+                    combining.Add(_items[j]);
+                }
+
+            }
+            else if (customList.Count > counter)
+            {
+                for (int k = counter; k < customList.Count; k++)
+                {
+                    combining.Add(customList[k]);
+                }
+            }
+
+            return combining;
         }
     }
 }
