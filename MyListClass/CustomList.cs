@@ -141,7 +141,13 @@ namespace MyListClass
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            throw new NotImplementedException();
+             for(int i = 0; i < _count; i++)
+            {
+                yield return _items[i];
+            }
+             //might not need to be there 
+            yield return "Done";
+
         }
 
         public static CustomList<T> operator +(CustomList<T> customList, CustomList<T> customList1)
